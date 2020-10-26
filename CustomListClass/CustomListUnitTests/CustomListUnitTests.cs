@@ -18,7 +18,7 @@ namespace CustomListUnitTests
             int actual;
             //act
             testList.Add(item);
-            actual = testList[0]; //error expected until indexer added to custom class
+            actual = testList[0]; 
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -35,7 +35,7 @@ namespace CustomListUnitTests
             int actual;
             //act
             testList.Add(item);
-            actual = testList.Count; //error expected until indexer added to custom class
+            actual = testList.Count; 
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -56,7 +56,7 @@ namespace CustomListUnitTests
             testList.Add(1);
             testList.Add(1);
             testList.Add(item);
-            actual = testList[4]; //error expected until indexer added to custom class
+            actual = testList[4]; 
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -77,7 +77,7 @@ namespace CustomListUnitTests
             testList.Add(1);
             testList.Add(1);
             testList.Add(item);
-            actual = testList.Count; //error expected until indexer added to custom class
+            actual = testList.Count; 
 
             //assert
             Assert.AreEqual(expected, actual);
