@@ -102,7 +102,5 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-
-
     }
 }

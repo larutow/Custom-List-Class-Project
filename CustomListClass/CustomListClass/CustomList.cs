@@ -29,6 +29,10 @@ namespace CustomListClass
         {
             get
             {
+                if(index >= Count || index < 0)
+                {
+                    throw new System.ArgumentOutOfRangeException("index", "index is out of the range (valid range: between 0 & Count)");
+                }
                 return _array[index];    
                 //TODO: Add exception if index >= count
             }
@@ -40,10 +44,14 @@ namespace CustomListClass
             _capacity = 0;
         }
 
-        private void TransferArray()
+        private void TransferArrayLarger()
         {
             T[] largerArray = new T[_capacity];
-
+            for(int i = 0; i < _count; i++)
+            {
+                largerArray[i] = _array[i];
+            }
+            _array = largerArray;
         }
 
         //create initial array
@@ -65,7 +73,7 @@ namespace CustomListClass
             if(_count == _capacity)
             {
                 _capacity *= 2;
-                TransferArray();
+                TransferArrayLarger();
             }
         }
 
