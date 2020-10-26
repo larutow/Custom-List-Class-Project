@@ -35,8 +35,39 @@ namespace CustomListClass
         }
         public CustomList()
         {
-            //initializes list w/ default capacity (4)
-            _array = new T[4];
+            //initializes list w/ default capacity (0)
+            _count = 0;
+            _capacity = 0;
         }
+
+        private void TransferArray()
+        {
+            T[] largerArray = new T[_capacity];
+
+        }
+
+        //create initial array
+        private void ListInitialize()
+        {
+            _array = new T[4];
+            _capacity = 4;
+        }
+
+        public void Add(T item)
+        {
+            //If array is currently empty
+            if(_count == 0)
+            {
+                ListInitialize();
+            }
+            _array[_count] = item;
+            _count++;
+            if(_count == _capacity)
+            {
+                _capacity *= 2;
+                TransferArray();
+            }
+        }
+
     }
 }

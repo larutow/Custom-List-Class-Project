@@ -43,7 +43,7 @@ namespace CustomListUnitTests
 
         //Test to add an item that has something in it already (Verify position of item, index is accurate)
         [TestMethod]
-        public void Add_AddItemToNonEmptyList_ItemGoesToIndex5()
+        public void Add_AddItemToNonEmptyList_ItemGoesToIndex4()
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>();
@@ -83,7 +83,25 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-       
+        [TestMethod]
+        public void Add_AddFifthElement_CapacitySizeDoubles()
+        {
+            //Arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+            //act
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(2);
+            actual = testList.Capacity;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
 
     }
