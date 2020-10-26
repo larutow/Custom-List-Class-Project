@@ -7,6 +7,7 @@ namespace CustomListUnitTests
     [TestClass]
     public class CustomListUnitTests
     {
+        //Test to add item(number) to empty list - ensure value of added item = value of input item to add method
         [TestMethod]
         public void Add_AddItemToEmptyList_ItemGoesToIndexZero()
         {
@@ -23,6 +24,7 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        //Test to add add item (int number) to empty list - ensure that count is accurate
         [TestMethod]
         public void Add_AddItemToEmptyList_CountIncrementsToOne()
         {
@@ -39,9 +41,9 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        //what if you add an item that has things in it already?(Position of item, index)
+        //Test to add an item that has something in it already (Verify position of item, index is accurate)
         [TestMethod]
-        public void Add_AddItemToNonEmptyList_ItemGoesToIndex2()
+        public void Add_AddItemToNonEmptyList_ItemGoesToIndex5()
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>();
@@ -49,27 +51,31 @@ namespace CustomListUnitTests
             int expected = 10;
             int actual;
             //act
-            testList.Add(0);
-            testList.Add(0);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
             testList.Add(item);
-            actual = testList[2]; //error expected until indexer added to custom class
+            actual = testList[4]; //error expected until indexer added to custom class
 
             //assert
             Assert.AreEqual(expected, actual);
         }
 
-        //what if you add an item that has things in it already?(value of count)
+        //Test to add an item to a 'list' that already contains data (verify value of count is correct)
         [TestMethod]
-        public void Add_AddItemToNonEmptyList_CountIncrementsToThree()
+        public void Add_AddItemToNonEmptyList_CountIncrementsToFive()
         {
             //Arrange
             CustomList<int> testList = new CustomList<int>();
             int item = 10;
-            int expected = 3;
+            int expected = 5;
             int actual;
             //act
-            testList.Add(0);
-            testList.Add(0);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
+            testList.Add(1);
             testList.Add(item);
             actual = testList.Count; //error expected until indexer added to custom class
 
@@ -77,7 +83,7 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        //how does the capacity change as you add things? (starts at 4 & doubles)
+       
 
 
     }

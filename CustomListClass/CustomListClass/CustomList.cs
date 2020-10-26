@@ -24,6 +24,15 @@ namespace CustomListClass
                 return _capacity;
             }
         }
+
+        public T this[int index]
+        {
+            get
+            {
+                return _array[index];    
+                //TODO: Add exception if index >= count
+            }
+        }
         public CustomList()
         {
             //initializes list w/ default capacity (4)
