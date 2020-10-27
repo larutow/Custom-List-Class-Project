@@ -90,6 +90,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 8;
             int actual;
+            
             //act
             testList.Add(1);
             testList.Add(1);
@@ -110,10 +111,12 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 0;
             int actual;
+            
             //act
             testList.Add(2);
             testList.Remove(2);
             actual = testList.Count;
+            
             //assert
             Assert.AreEqual(expected, actual);
         }
@@ -126,11 +129,13 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 3;
             int actual;
+            
             //act
             testList.Add(2);
             testList.Add(3);
             testList.Remove(2);
             actual = testList[0];
+            
             //assert
             Assert.AreEqual(expected, actual);
         }
@@ -143,6 +148,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             bool expected = true;
             bool actual;
+            
             //act
             testList.Add(2);
             actual = testList.Remove(2);
@@ -159,6 +165,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             bool expected = false;
             bool actual;
+            
             //act
             testList.Add(2);
             actual = testList.Remove(3);
@@ -167,6 +174,30 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        //checkt to see if capacity remains after removing items
+        [TestMethod]
+
+        public void Remove_RemoveFiveElements_CapacityIsEight()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+
+            //act
+            for(int i = 0; i < 5; i++)
+            {
+                testList.Add(2);
+            }
+            for(int i = 0; i < 5; i++)
+            {
+                testList.Remove(2);
+            }
+            actual = testList.Capacity;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }
