@@ -102,5 +102,71 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        //check to see if count decreases after removing item
+        [TestMethod]
+        public void Remove_RemoveFirstElement_CountGoesToZero()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 0;
+            int actual;
+            //act
+            testList.Add(2);
+            testList.Remove(2);
+            actual = testList.Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //check to see if index of removed item now contains second item
+        [TestMethod]
+        public void Remove_RemoveFirstElement_IndexZeroEqualsIndexOneVal()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+            //act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Remove(2);
+            actual = testList[0];
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //check to see if return bool is true on successful removal
+        [TestMethod]
+        public void Remove_RemoveContainedElement_BoolIsTrue()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            bool expected = true;
+            bool actual;
+            //act
+            testList.Add(2);
+            actual = testList.Remove(2);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //check to see if return bool is false on unsuccessful removal
+        [TestMethod]
+        public void Remove_RemoveUnfoundElement_BoolIsFalse()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            bool expected = false;
+            bool actual;
+            //act
+            testList.Add(2);
+            actual = testList.Remove(3);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }

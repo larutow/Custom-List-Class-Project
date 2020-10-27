@@ -12,14 +12,23 @@ namespace CustomListClass
         {
             //List<int> testList = new List<int>();
 
-            CustomList<int> testList = new CustomList<int>();
+            CustomList<string> testList = new CustomList<string>();
 
-            testList.Add(100);
-            testList.Add(200);
-            testList.Add(300);
-            testList.Add(400);
+            testList.Add("one");
+            testList.Add("two");
+            testList.Add("three");
+            testList.Add("four");
+            testList.Add("five");
 
+            //bool succ = testList.Remove(300);
+            //bool succ2 = testList.Remove(200);
+            //bool fail = testList.Remove(50);
+
+            Console.WriteLine(testList[0]);
+            Console.WriteLine(testList[1]);
             Console.WriteLine(testList[2]);
+
+
             Console.ReadLine();
  
         }
