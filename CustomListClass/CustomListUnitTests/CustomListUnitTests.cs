@@ -402,6 +402,7 @@ namespace CustomListUnitTests
                 testList1.Add($"{i}");
                 testList2.Add($"{i + 10}");
             }
+            testList1.Add("3");
             expected = testList2[0];
             testList3 = testList1 + testList2;
             actual = testList3[testList1.Count];
@@ -434,6 +435,32 @@ namespace CustomListUnitTests
 
             //assert
             Assert.AreEqual(actual, expected);
+
+        }
+
+        //check if added lists stringified length is accurate (add list of 4 + list of 3 == 22 char length string)
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomListsGetStringLength_StringLengthI()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            int expected = 22; //0, 1, 2, 3, 10, 11, 12 == 22 chars
+            int actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            testList1.Add("3");
+            testList3 = testList1 + testList2;
+            actual = testList3.ToString().Length;
+
+            //assert
+            Assert.AreEqual(expected, actual);
 
         }
     }
