@@ -140,6 +140,27 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        //check to see if index of third index contains fourth (shifting) after removing first index
+        [TestMethod]
+        public void Remove_RemoveFirstElement_Index2EqualsIndexThreeVal()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 400;
+            int actual;
+
+            //act
+            testList.Add(100);
+            testList.Add(200);
+            testList.Add(300);
+            testList.Add(400);
+            testList.Remove(100);
+            actual = testList[2];
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
         //check to see if return bool is true on successful removal
         [TestMethod]
         public void Remove_RemoveContainedElement_BoolIsTrue()
@@ -198,6 +219,8 @@ namespace CustomListUnitTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+
 
     }
 }

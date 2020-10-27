@@ -44,7 +44,7 @@ namespace CustomListClass
             _capacity = 0;
         }
 
-        private void TransferArrayLarger()
+        private void ExpandArray()
         {
             T[] largerArray = new T[_capacity];
             for(int i = 0; i < _count; i++)
@@ -73,9 +73,37 @@ namespace CustomListClass
             if(_count == _capacity)
             {
                 _capacity *= 2;
-                TransferArrayLarger();
+                ExpandArray();
             }
         }
+
+        private void ArrayItemRemoveOp(int indexItemToRemove)
+        {
+            for (int i = indexItemToRemove; i < (_count - 1); i++)
+            { 
+                _array[i] = _array[i + 1];
+            }
+        }
+
+        public bool Remove(T item)
+        {
+            bool removeSuccess = false;
+            for (int i = 0; i < _count; i++)
+            {
+                if(item.Equals(_array[i]))
+                {
+                    ArrayItemRemoveOp(i);
+                    _count--;
+                    removeSuccess = true;
+                    break;
+                }
+            }
+
+            return removeSuccess;
+        }
+
+
+
 
     }
 }
