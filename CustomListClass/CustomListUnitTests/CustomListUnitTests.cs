@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CustomListClass;
+using System.Collections.Generic;
 
 namespace CustomListUnitTests
 {
@@ -18,7 +19,7 @@ namespace CustomListUnitTests
             int actual;
             //act
             testList.Add(item);
-            actual = testList[0]; 
+            actual = testList[0];
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -35,7 +36,7 @@ namespace CustomListUnitTests
             int actual;
             //act
             testList.Add(item);
-            actual = testList.Count; 
+            actual = testList.Count;
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -56,7 +57,7 @@ namespace CustomListUnitTests
             testList.Add(1);
             testList.Add(1);
             testList.Add(item);
-            actual = testList[4]; 
+            actual = testList[4];
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -77,7 +78,7 @@ namespace CustomListUnitTests
             testList.Add(1);
             testList.Add(1);
             testList.Add(item);
-            actual = testList.Count; 
+            actual = testList.Count;
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -90,7 +91,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 8;
             int actual;
-            
+
             //act
             testList.Add(1);
             testList.Add(1);
@@ -115,12 +116,12 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 0;
             int actual;
-            
+
             //act
             testList.Add(2);
             testList.Remove(2);
             actual = testList.Count;
-            
+
             //assert
             Assert.AreEqual(expected, actual);
         }
@@ -133,13 +134,13 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             int expected = 3;
             int actual;
-            
+
             //act
             testList.Add(2);
             testList.Add(3);
             testList.Remove(2);
             actual = testList[0];
-            
+
             //assert
             Assert.AreEqual(expected, actual);
         }
@@ -173,7 +174,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             bool expected = true;
             bool actual;
-            
+
             //act
             testList.Add(2);
             actual = testList.Remove(2);
@@ -190,7 +191,7 @@ namespace CustomListUnitTests
             CustomList<int> testList = new CustomList<int>();
             bool expected = false;
             bool actual;
-            
+
             //act
             testList.Add(2);
             actual = testList.Remove(3);
@@ -210,11 +211,11 @@ namespace CustomListUnitTests
             int actual;
 
             //act
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 testList.Add(2);
             }
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 testList.Remove(2);
             }
@@ -301,5 +302,139 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+
+        /*
+         * Unit tests for + operator overload method
+         */
+
+        //check if count increases by 3 (to 6) as second list (count 3) is added to first (count 3)
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomLists_CountEqualsSumOfCounts()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            int expected;
+            int actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            expected = testList1.Count + testList2.Count;
+            testList3 = testList1 + testList2;
+            actual = testList3.Count;
+
+            //assert
+            Assert.AreEqual(actual, expected);
+
+        }
+
+        //check if the first value of new list is equal to the first value of the first list
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomLists_IndexZeroValyeEqualsFirstListIndexZeroValue()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            string expected;
+            string actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            expected = testList1[0];
+            testList3 = testList1 + testList2;
+            actual = testList3[0];
+
+            //assert
+            Assert.AreEqual(actual, expected);
+
+        }
+
+        //check if last value of the first list equals last value before second list values begin
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomLists_LastValueOfFirstListEqualsLastValueBeforeSecondList()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            string expected;
+            string actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            expected = testList1[testList1.Count-1];
+            testList3 = testList1 + testList2;
+            actual = testList3[testList1.Count-1];
+
+            //assert
+            Assert.AreEqual(actual, expected);
+
+        }
+
+        //check if the fourth value of the new list is equal to the first value of the second list
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomLists_IndexThreeEqualsSecondListIndexZero()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            string expected;
+            string actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            expected = testList2[0];
+            testList3 = testList1 + testList2;
+            actual = testList3[testList1.Count];
+
+            //assert
+            Assert.AreEqual(actual, expected);
+
+        }
+
+        //check if last value of the new list is equal to the last value of the second list
+        [TestMethod]
+        public void PlusOperator_AddTwoCustomLists_LastIndexNewListEqualsLastIndexOfSecondAddend()
+        {
+            //arrange
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            string expected;
+            string actual;
+
+            //act
+            for (int i = 0; i < 3; i++)
+            {
+                testList1.Add($"{i}");
+                testList2.Add($"{i + 10}");
+            }
+            expected = testList2[testList2.Count-1];
+            testList3 = testList1 + testList2;
+            actual = testList3[testList3.Count-1];
+
+            //assert
+            Assert.AreEqual(actual, expected);
+
+        }
     }
 }
