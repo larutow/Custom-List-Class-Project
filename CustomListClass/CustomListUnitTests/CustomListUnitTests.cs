@@ -103,6 +103,10 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        /*
+         * Remove method testing
+         */
+
         //check to see if count decreases after removing item
         [TestMethod]
         public void Remove_RemoveFirstElement_CountGoesToZero()
@@ -195,7 +199,7 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        //checkt to see if capacity remains after removing items
+        //check to see if capacity remains after removing items
         [TestMethod]
 
         public void Remove_RemoveFiveElements_CapacityIsEight()
@@ -220,7 +224,82 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        /*
+         * ToString Method
+         */
 
+        //Check if string.length = expected based upon a 5 element list of ints (1, 2, 3, 4, 5)
+        //expect 13 chars (5 numbers, 4 spaces, 4 commas)
+        [TestMethod]
+        public void ToString_AddFiveElementsReturnString_LengthEqualsThirteen()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 13;
+            string stringifiedList;
+            int actual;
+
+            //act
+            for (int i = 1; i < 6; i++)
+            {
+                testList.Add(i);
+            }
+            stringifiedList = testList.ToString();
+            //returns: "1, 2, 3, 4, 5"
+            //expect 13 chars (5 numbers, 4 spaces, 4 commas)
+            actual = testList.Capacity;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //try to int.parse output strings first character and see if it matches expected [1]
+        [TestMethod]
+        public void ToString_AddFiveElementsReturnString_FirstElementOfStringEqualsOne()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 1;
+            string stringifiedList;
+            int actual;
+
+            //act
+            for (int i = 1; i < 6; i++)
+            {
+                testList.Add(i);
+            }
+            stringifiedList = testList.ToString();
+            //returns: "1, 2, 3, 4, 5"
+            //expect 1
+            actual = int.Parse(stringifiedList[0].ToString());
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //try to int.parse output strings last character and see if it matches expected [5]
+        [TestMethod]
+        public void ToString_AddFiveElementsReturnString_13thElementOfStringEqualsOne()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 5;
+            string stringifiedList;
+            int actual;
+
+            //act
+            for (int i = 1; i < 6; i++)
+            {
+                testList.Add(i);
+            }
+            stringifiedList = testList.ToString();
+            //returns: "1, 2, 3, 4, 5"
+            //expect 1
+            actual = int.Parse(stringifiedList[12].ToString());
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }

@@ -10,25 +10,17 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            List<string> testList = new List<string>();
+            //List<int> testList = new List<int>();
+            CustomList<int> testList = new CustomList<int>();
+            testList.Add(1);
+            testList.Add(2);
 
-            //CustomList<string> testList = new CustomList<string>();
-
-            testList.Add("hello");
-            testList.Add("hi");
-            testList.Add("howdy");
-            testList.Add("bonjour");
-            testList.Add("hola");
-            testList.Remove("howdy");
+            
+            Console.WriteLine(testList.ToString());
 
             //bool succ = testList.Remove(300);
             //bool succ2 = testList.Remove(200);
             //bool fail = testList.Remove(50);
-
-            Console.WriteLine(testList[0]);
-            Console.WriteLine(testList[1]);
-            Console.WriteLine(testList[2]);
-
 
             Console.ReadLine();
  
