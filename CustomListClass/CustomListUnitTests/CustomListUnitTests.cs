@@ -247,7 +247,7 @@ namespace CustomListUnitTests
             stringifiedList = testList.ToString();
             //returns: "1, 2, 3, 4, 5"
             //expect 13 chars (5 numbers, 4 spaces, 4 commas)
-            actual = testList.Capacity;
+            actual = stringifiedList.Length;
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -279,7 +279,7 @@ namespace CustomListUnitTests
 
         //try to int.parse output strings last character and see if it matches expected [5]
         [TestMethod]
-        public void ToString_AddFiveElementsReturnString_13thElementOfStringEqualsOne()
+        public void ToString_AddFiveElementsReturnString_13thElementOfStringEqualsFive()
         {
             //arrange
             CustomList<int> testList = new CustomList<int>();

@@ -103,7 +103,20 @@ namespace CustomListClass
         }
 
 
-
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < _count; i++)
+            {
+                sb.Append(_array[i]);
+                if(i < _count - 1)
+                {
+                    sb.Append(", ");
+                }
+                
+            }
+            return sb.ToString();
+        }
 
     }
 }
