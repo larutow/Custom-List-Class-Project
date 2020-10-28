@@ -438,16 +438,16 @@ namespace CustomListUnitTests
 
         }
 
-        //check if added lists stringified length is accurate (add list of 4 + list of 3 == 22 char length string)
+        //check if added lists stringified is accurate
         [TestMethod]
-        public void PlusOperator_AddTwoCustomListsGetStringLength_StringLengthI()
+        public void PlusOperator_AddTwoCustomListsGetString_StringIsExpected()
         {
             //arrange
             CustomList<string> testList1 = new CustomList<string>();
             CustomList<string> testList2 = new CustomList<string>();
             CustomList<string> testList3;
-            int expected = 22; //0, 1, 2, 3, 10, 11, 12 == 22 chars
-            int actual;
+            string expected = "0, 1, 2, 3, 10, 11, 12"; //0, 1, 2, 3, 10, 11, 12 == 22 chars
+            string actual;
 
             //act
             for (int i = 0; i < 3; i++)
@@ -457,7 +457,7 @@ namespace CustomListUnitTests
             }
             testList1.Add("3");
             testList3 = testList1 + testList2;
-            actual = testList3.ToString().Length;
+            actual = testList3.ToString();
 
             //assert
             Assert.AreEqual(expected, actual);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,6 +117,21 @@ namespace CustomListClass
                 
             }
             return sb.ToString();
+        }
+
+        public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> list3 = new CustomList<T>();
+            for(int i = 0; i < list1.Count; i++)
+            {
+                list3.Add(list1[i]);
+            }
+
+            for (int i = 0; i < list2.Count; i++)
+            {
+                list3.Add(list2[i]);
+            }
+            return list3;
         }
 
     }
