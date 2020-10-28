@@ -134,5 +134,30 @@ namespace CustomListClass
             return list3;
         }
 
+        //private helper method to mirror lists
+   
+
+       //removes list2 elements from list1
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> subtractedList = new CustomList<T>();
+            subtractedList = list1;
+
+            for(int i = 0; i < list2.Count; i++)
+            {
+                for(int j = 0; j < list1.Count; j++)
+                {
+                    if (list1[j].Equals(list2[i]))
+                    {
+                        subtractedList.Remove(subtractedList[j]);
+                        break;
+                    }
+                }
+            }
+
+            return subtractedList;
+        }
+
+
     }
 }
