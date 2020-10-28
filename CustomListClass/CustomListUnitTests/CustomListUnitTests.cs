@@ -463,5 +463,136 @@ namespace CustomListUnitTests
             Assert.AreEqual(expected, actual);
 
         }
+
+        /*
+         * Unit tests for - operator overload method
+         */
+
+
+        //Add 2 lists, subtract one of them, the other should remain, compare string representations of them
+        [TestMethod]
+        public void MinusOperator_AddTwoListsThenSubtractOne_FirstSingleListIsExpected()
+        {
+            //arrange
+            CustomList<int> expected = new CustomList<int>();
+            for (int i = 1; i < 4; i++)
+            {
+                expected.Add(i); // 1, 2, 3
+            }
+
+            CustomList<int> list2 = new CustomList<int>();
+            for (int i = 1; i < 4; i++)
+            {
+                list2.Add(i + 10); // 11, 12, 13
+            }
+
+            CustomList<int> list3 = expected + list2; // 1, 2, 3, 11, 12, 13
+            
+
+            //act
+            CustomList<int> actual = list3 - list2;//1, 2, 3
+
+            //assert
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        //Add 2 lists, subtract part of one, the remaining parts should remain in the new list (check via string comparison)
+        //Add (1, 2, 3) + (4, 5, 6)
+        //Subtract (1, 2, 3, 4, 5 , 6) - (2, 5)
+        //Expected (1, 3, 4, 6)
+        [TestMethod]
+        public void MinusOperator_AddTwoListsThenSubtractPartial_PartialListMeetsExpected()
+        {
+            //arrange
+            CustomList<int> list1 = new CustomList<int>();
+            for (int i = 1; i < 4; i++)
+            {
+                list1.Add(i); // 1, 2, 3
+            }
+
+            CustomList<int> list2 = new CustomList<int>();
+            for (int i = 4; i < 7; i++)
+            {
+                list2.Add(i); // 4, 5, 6
+            }
+
+            CustomList<int> list3 = list1 + list2; // 1, 2, 3, 4, 5, 6
+            CustomList<int> list4 = new CustomList<int>();
+            list4.Add(2);
+            list4.Add(5);
+            string expected = "1, 3, 4, 6";
+            string actual;
+
+            //act
+            CustomList<int> actuallist = list3 - list4;//should be 1, 3, 4, 6
+            actual = actuallist.ToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        //Add 2 lists, subtract part of one, the count of the the new list should be known/expected value
+        //Add (1, 2, 3, 4, 5) + (6, 7, 8)
+        //Subtract (1, 2, 3, 4, 5 , 6, 7, 8) - (2, 5)
+        //Expected (1, 3, 4, 6, 7, 8): Count = 6
+        [TestMethod]
+        public void MinusOperator_AddTwoListsThenSubtractPartial_CountIsList1CountMinusListTwoCount()
+        {
+            //arrange
+            CustomList<int> list1 = new CustomList<int>();
+            for (int i = 1; i < 6; i++)
+            {
+                list1.Add(i); // 1, 2, 3, 4, 5
+            }
+
+            CustomList<int> list2 = new CustomList<int>();
+            for (int i = 6; i < 9; i++)
+            {
+                list2.Add(i); // 6, 7, 8
+            }
+
+            CustomList<int> list3 = list1 + list2; // 1, 2, 3, 4, 5, 6, 7, 8: count = 8
+            CustomList<int> list4 = new CustomList<int>();
+            list4.Add(2);// 2: count = 1
+            list4.Add(5);// 2, 5: count = 2
+            int expected = 6;
+            int actual;
+
+            //act
+            CustomList<int> actuallist = list3 - list4;//should be 1, 3, 4, 6
+            actual = actuallist.Count;
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        //Add 2 lists, subtract an empty list, only sum should remain (compare string values)
+        [TestMethod]
+        public void MinusOperator_AddTwoListsThenSubtractEmpty_ExpectSumLists()
+        {
+            //arrange
+            CustomList<int> list1 = new CustomList<int>();
+            for (int i = 1; i < 4; i++)
+            {
+                list1.Add(i); // 1, 2, 3
+            }
+
+            CustomList<int> list2 = new CustomList<int>();
+            for (int i = 1; i < 4; i++)
+            {
+                list2.Add(i + 10); // 11, 12, 13
+            }
+            CustomList<int> emptyList = new CustomList<int>();
+
+            CustomList<int> expectedList = list1 + list2; // 1, 2, 3, 11, 12, 13
+
+
+            //act
+            CustomList<int> actualList = expectedList - emptyList;//1, 2, 3
+
+            //assert
+            Assert.AreEqual(expectedList.ToString(), actualList.ToString());
+        }
     }
 }
