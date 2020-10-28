@@ -11,13 +11,18 @@ namespace CustomListClass
         static void Main(string[] args)
         {
             //List<int> testList = new List<int>();
-            CustomList<Cat> testList = new CustomList<Cat>();
-            testList.Add(new Cat("Midna", "black", 4));
-            testList.Add(new Cat("Jerry", "sand", 3));
+            CustomList<string> testList1 = new CustomList<string>();
+            CustomList<string> testList2 = new CustomList<string>();
+            CustomList<string> testList3;
+            testList1.Add("yo");
+            testList1.Add("boo");
+            testList1.Add("duh");
+            testList2.Add("hi");
+            testList2.Add("ree");
+            testList3 = testList1 + testList2;
+            Console.WriteLine(testList3.ToString());
 
 
-
-            Console.WriteLine(testList.ToString());
 
             //bool succ = testList.Remove(300);
             //bool succ2 = testList.Remove(200);
