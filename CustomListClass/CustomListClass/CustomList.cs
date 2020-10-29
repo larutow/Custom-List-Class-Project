@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace CustomListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                yield return _array[i];
+            }
+        }
+
+
         private T[] _array;
         private int _count;
         private int _capacity;
@@ -44,6 +54,18 @@ namespace CustomListClass
             _count = 0;
             _capacity = 0;
         }
+        
+        //public CustomList(IEnumerable<T> collection)
+        //{
+        //    //initializes list w/ default capacity (0)
+        //    _count = 0;
+        //    _capacity = 0;
+        //    foreach (T item in collection)
+        //    {
+        //        Add(item);
+        //    }
+
+        //}
 
         private void ExpandArray()
         {
