@@ -595,6 +595,42 @@ namespace CustomListUnitTests
             Assert.AreEqual(expectedList.ToString(), actualList.ToString());
         }
 
+        /*
+         * Unit tests for zipper method
+         */
+        [TestMethod]
+        public void Zipper_ZipTwoStringsSameLength_ExpectStringEqualsAlternatingElements()
+        {
+            //arrange
+            CustomList<string> list1 = new CustomList<string> { "foo", "bar", "foobar" };
+            CustomList<string> list2 = new CustomList<string> { "fizz", "buzz", "fizzbuzz" };
+            CustomList<string> expected = new CustomList<string> { "foo", "fizz", "bar", "buzz", "foobar", "fizzbuzz" };
+            CustomList<string> actual;
+            //act
+            actual = list1.Zip(list2);
+
+            //assert
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+
+        }
+
+        [TestMethod]
+        public void Zipper_ZipTwoStringsDifferentLength_ExpectStringEqualsAlternatingElementsWithRepeatingOverFlows()
+        {
+            //arrange
+            CustomList<string> list1 = new CustomList<string> { "foo", "bar", "foobar" };
+            CustomList<string> list2 = new CustomList<string> { "fizz", "buzz", "fizzbuzz", "Overflow1", "Overflow2" };
+            CustomList<string> expected = new CustomList<string> { "foo", "fizz", "bar", "buzz", "foobar", "fizzbuzz", "Overflow1", "Overflow2" };
+            CustomList<string> actual;
+            //act
+            actual = list1.Zip(list2);
+
+            //assert
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+
+        }
 
     }
 }

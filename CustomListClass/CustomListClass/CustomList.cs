@@ -180,6 +180,44 @@ namespace CustomListClass
             return subtractedList;
         }
 
+        private int CompareCounts(CustomList<T> listToCompareCountTo)
+        {
+            if(_count >= listToCompareCountTo.Count)
+            {
+                return Count;
+            }
+            else
+            {
+                return listToCompareCountTo.Count;
+            }
+        }
+        public CustomList<T> Zip(CustomList<T> listToBeZipped)
+        {
+            /* 1. take in a list to be zipped (arg)
+             * 2. create a new list (the list to be returned) 
+             * 2.5 note the following steps will take place for as long as longest count (need to compare counts)
+             * 3. take the i element of this list and add it to new list (if i < this list.count)
+             * 4. take the i element of the list to be zipped (arg) and add it to the list (if i < this list.count)
+             * 5. repeat 3 & 4 for as long as there are elements in one of the lists
+             */
+            CustomList<T> zippedList = new CustomList<T>();
+            int longestCount = CompareCounts(listToBeZipped);
+
+            for (int i = 0; i < longestCount; i++)
+            {
+                if(i < Count)
+                {
+                    zippedList.Add(_array[i]);
+                }
+                if (i < listToBeZipped.Count)
+                {
+                    zippedList.Add(listToBeZipped[i]);
+                }
+            }
+
+            return zippedList;
+
+        }
 
     }
 }

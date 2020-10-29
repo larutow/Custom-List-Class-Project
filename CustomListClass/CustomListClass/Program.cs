@@ -10,7 +10,7 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-   
+
             CustomList<string> testList1 = new CustomList<string>();
             CustomList<string> testList2 = new CustomList<string>();
 
@@ -22,8 +22,10 @@ namespace CustomListClass
             testList2.Add("c");
             testList2.Add("f");
             //testList2 contains: 3, c, f
-            
-            CustomList<string> foo2 = new CustomList<string> { "one", "two", "three" };
+
+
+
+            CustomList<string> foo2 = testList1.Zip(testList2);
             foreach (string item in foo2)
             {
                 Console.WriteLine(item);
