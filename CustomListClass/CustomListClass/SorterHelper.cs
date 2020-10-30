@@ -18,9 +18,6 @@ namespace CustomListClass
 
         public CustomList<T> MergeSort<T>(CustomList<T> sortList) where T : IComparable
         {
-            
-                
-
                 // the following code block will run to split into left & right arrays (until empty single instance arrays remain)
 
                 if (sortList.Count <= 1)
