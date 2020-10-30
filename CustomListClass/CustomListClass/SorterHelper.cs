@@ -24,46 +24,51 @@ namespace CustomListClass
                 {
                     return sortList;
                 }
-                CustomList<T> left = new CustomList<T>(); // left side array created
-                CustomList<T> right = new CustomList<T>(); // right side array created
+                CustomList<T> left = new CustomList<T>(); // left side list created
+                CustomList<T> right = new CustomList<T>(); // right side list created
                 int midpoint = sortList.Count / 2;
 
-                //populate left array
+                //populate left list
                 for (int i = 0; i < midpoint; i++)
                 {
                 left.Add(sortList[i]);
                 }
-                //populate right array
+                //populate right list
                 //need to make right start at zero but reference correct elements in array
                 for (int i = midpoint; i < sortList.Count; i++)
                 {
                     right.Add(sortList[i]);
                     
                 }
-
+                //recurse to break down until in single chunks
                 left = MergeSort(left);
                 right = MergeSort(right);
+                //merge chunks up recursion tree
                 return Merge(left, right);
         }
 
         private CustomList<T> Merge<T>(CustomList<T> left, CustomList<T> right) where T : IComparable
         {
-            //first build a new empty array based upon length of two arrays
+            //first build a new empty list (to be composed of combined left & right lists)
             CustomList<T> mergedList = new CustomList<T>();
 
+
+            //simple merge logic, compare each lists first value, if first value of list 
             int leftindex = 0;
             int rightindex = 0;
-            while (left.Count > 0 && right.Count > 0)
+            while (leftindex < left.Count && rightindex < right.Count)
             {
                 if (left[leftindex].CompareTo(right[rightindex]) <= 0 )
                 {
-                    mergedList.Add(left[0]);
-                    left.Remove(left[0]);
+                    mergedList.Add(left[leftindex]);
+                    leftindex++;
+
                 }
                 else
                 {
                     mergedList.Add(right[rightindex]);
-                    right.Remove(right[rightindex]);
+                    rightindex++;
+
                 }
             }
 
@@ -72,7 +77,8 @@ namespace CustomListClass
                 do
                 {
                     mergedList.Add(right[rightindex]);
-                    right.Remove(right[rightindex]);
+                    rightindex++;
+
                 } while (rightindex < right.Count);
                 
             }
@@ -81,7 +87,8 @@ namespace CustomListClass
                 do
                 {
                     mergedList.Add(left[leftindex]);
-                    left.Remove(left[leftindex]);
+                    leftindex++;
+
                 } while (leftindex < left.Count);
                 
             }
