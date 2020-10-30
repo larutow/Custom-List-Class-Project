@@ -14,6 +14,7 @@ namespace CustomListClass
             CustomList<string> testList1 = new CustomList<string>();
             CustomList<string> testList2 = new CustomList<string>();
 
+
             testList1.Add("a");
             testList1.Add("b");
             testList1.Add("c");
